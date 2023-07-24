@@ -25,14 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
     MeetingsScreen(),
     const HistoryMeetingScreen(),
     const Text('Contacts'),
-    CustomButton(text: 'Log Out', onPressed: () => AuthMethods().logOut()),
+    CustomButton(text: 'Sign Out', onPressed: () => AuthMethods().logOut()),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meet & Chat'),
+        title: const Text('Connect Now'),
         elevation: 0,
         centerTitle: true,
         backgroundColor: backgroundColor,
@@ -48,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
         //unselectedFontSize: 14.0,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.comment_outlined), label: 'Meet & Chat'),
+              icon: Icon(Icons.home_outlined), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.work_history_outlined), label: 'Meetings'),
+              icon: Icon(Icons.history_outlined), label: 'Logs'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_outline), label: 'Contacts'),
           BottomNavigationBarItem(
