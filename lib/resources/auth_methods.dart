@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect_now/utils/utils.dart';
+import 'package:connect_now/utils/snackbar_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -7,6 +7,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthMethods{
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Stream<User?> get authChanged => _auth.authStateChanges();
+  User get user => _auth.currentUser!;
 
   Future<bool> signInWithGoogle(BuildContext context) async {
     bool res = false;
@@ -39,6 +42,15 @@ class AuthMethods{
       res =false;
     }
     return res;
+  }
+
+  void logOut() async {
+    try{
+      _auth.signOut();
+    }catch(e){
+      print(e);
+    }
+
   }
 
 }

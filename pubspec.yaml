@@ -40,6 +40,9 @@ dependencies:
   firebase_auth: ^4.7.1
   cloud_firestore: ^4.8.3
   google_sign_in: ^6.1.4
+  jitsi_meet_wrapper: ^0.2.0+1
+  intl: ^0.18.1
+
 
 dev_dependencies:
   flutter_test:
