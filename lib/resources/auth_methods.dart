@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthMethods{
+class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -14,10 +14,11 @@ class AuthMethods{
   Future<bool> signInWithGoogle(BuildContext context) async {
     bool res = false;
 
-    try{
+    try {
       //google sign in
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
@@ -26,31 +27,28 @@ class AuthMethods{
 
       //storing new user auth on firestore
       User? user = userCred.user;
-      if(user != null){
-        if(userCred.additionalUserInfo!.isNewUser){
+      if (user != null) {
+        if (userCred.additionalUserInfo!.isNewUser) {
           await _firestore.collection('users').doc(user.uid).set({
-            'username' : user.displayName,
-            'uid' : user.uid,
-            'profilePhoto' : user.photoURL,
+            'username': user.displayName,
+            'uid': user.uid,
+            'profilePhoto': user.photoURL,
           });
         }
-        res =true;
+        res = true;
       }
-
-    } on FirebaseAuthException catch(e){
+    } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
-      res =false;
+      res = false;
     }
     return res;
   }
 
   void logOut() async {
-    try{
+    try {
       _auth.signOut();
-    }catch(e){
+    } catch (e) {
       print(e);
     }
-
   }
-
 }

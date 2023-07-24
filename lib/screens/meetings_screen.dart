@@ -20,6 +20,7 @@ class MeetingsScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/video-call');
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Column(

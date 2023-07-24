@@ -20,7 +20,8 @@ class JitsiMeetMethods{
       name = username;
     }
 
-    // Define meetings options here
+    Map<String, Object> featureFlags = {};
+
     var options = JitsiMeetingOptions(
       roomNameOrUrl: roomName,
       userDisplayName: name,
@@ -28,6 +29,7 @@ class JitsiMeetMethods{
       userAvatarUrl: _authMethods.user.photoURL,
       isAudioMuted: isAudioMuted,
       isVideoMuted: isVideoMuted,
+      featureFlags: featureFlags,
     );
 
     _firesStoreMethods.addToMeetingHistory(roomName);
